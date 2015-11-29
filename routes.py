@@ -11,24 +11,24 @@ app.secret_key = ""
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+  return render_template("index.html")
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+  return render_template("about.html")
 
-@app.route("/signup", methods=['GET', 'POST'])
+@app.route("/signup", methods=["GET", "POST"])
 def signup():
-    form = SignupForm()
+  form = SignupForm()
 
-    if request.method == 'POST':
-        if form.validate() == False:
-            return render_template('signup.html', form=form)
-        else:
-            return "Success!"
+  if request.method == "POST":
+    if form.validate() == False:
+      return render_template('signup.html', form=form)
+    else:
+      return "Success!"
 
-    elif request.method == "GET":
-        return render_template('signup.html', form=form)
+  elif request.method == "GET":
+    return render_template('signup.html', form=form)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+  app.run(debug=True)
