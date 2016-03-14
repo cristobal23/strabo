@@ -1,13 +1,14 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from models import db, User, Place
 from forms import SignupForm, LoginForm, AddressForm
+import os
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/strabo'
 db.init_app(app)
 
-app.secret_key = ""
+app.secret_key = os.environ['APP_SECRET_KEY']
 
 @app.route("/")
 def index():
@@ -79,7 +80,7 @@ def home():
 
   if request.method == 'POST':
     if form.validate() == False:
-      return render_template('home.html', form=form)
+      return render_template('home.html', form=form, my_coordinates=my_coordinates)
     else:
       # get the address
       address = form.address.data
