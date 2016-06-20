@@ -1,7 +1,7 @@
-from flask import Blueprint, render_template, flash, request, session, redirect, url_for
+from flask import Blueprint, render_template, request, session, redirect, url_for
 from strabo.extensions import cache
 from strabo.forms import SignupForm, LoginForm, AddressForm
-from strabo.models import db, User, Place 
+from strabo.models import db, User, Place
 
 main = Blueprint('main', __name__)
 
@@ -26,7 +26,7 @@ def signup():
     form = SignupForm()
 
     if request.method == "POST":
-        if form.validate() == False:
+        if form.validate() is False:
             return render_template('signup.html', form=form)
         else:
             newuser = User(form.first_name.data, form.last_name.data, form.email.data, form.password.data)
@@ -48,7 +48,7 @@ def login():
     form = LoginForm()
 
     if request.method == "POST":
-        if form.validate() == False:
+        if form.validate() is False:
             return render_template("login.html", form=form)
         else:
             email = form.email.data
@@ -82,7 +82,7 @@ def home():
     my_coordinates = (37.4221, -122.0844)
 
     if request.method == 'POST':
-        if form.validate() == False:
+        if form.validate() is False:
             return render_template('home.html', form=form, my_coordinates=my_coordinates)
         else:
             # get the address

@@ -12,8 +12,10 @@ deps:
 clean:
 	python manage.py clean
 
-lint:
-	flake8 --exclude=env .
+test: lint pytest
 
-test:
+lint:
+	flake8 .
+
+pytest:
 	py.test tests

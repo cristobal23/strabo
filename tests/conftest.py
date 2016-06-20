@@ -1,6 +1,6 @@
 import pytest
 
-from strabo import create_app
+from strabo.app import create_app
 from strabo.models import db, User
 
 
@@ -13,7 +13,8 @@ def testapp(request):
     db.create_all()
 
     if getattr(request.module, "create_user", True):
-        test_user = User('firsty', 'lasty', 'firsty@emaily.com', 'supersafepassword')
+        test_user = User('firsty', 'lasty', 'firsty@emaily.com',
+                         'supersafepassword')
         db.session.add(test_user)
         db.session.commit()
 

@@ -1,6 +1,6 @@
 #! ../env/bin/python
 # -*- coding: utf-8 -*-
-from strabo import create_app
+from strabo.app import create_app
 
 
 class TestConfig:

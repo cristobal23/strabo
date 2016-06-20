@@ -1,1 +1,1 @@
-web: gunicorn strabo:create_app\('strabo.settings.ProdConfig'\)
+web: gunicorn strabo.app:create_app\(\)
