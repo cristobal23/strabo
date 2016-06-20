@@ -1,2 +1,1 @@
-web: gunicorn routes:app
-
+web: gunicorn strabo.strabo:create_app\(\)
