@@ -1,1 +1,1 @@
-web: gunicorn strabo.strabo:create_app\(\)
+web: gunicorn strabo:create_app\(\)
