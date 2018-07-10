@@ -15,7 +15,7 @@ clean:
 test: lint pytest
 
 lint:
-	flake8 .
+	flake8 . --exclude=venv
 
 pytest:
 	py.test tests
