@@ -39,10 +39,11 @@ class TestURLs:
             if the user is logged in
         """
 
-        testapp.post('/login', data=dict(
-            email='firsty@emaily.com',
-            password="supersafepassword"
-        ), follow_redirects=True)
+        testapp.post(
+            '/login',
+            data=dict(email='firsty@emaily.com', password="supersafepassword"),
+            follow_redirects=True,
+        )
 
         rv = testapp.get('/home')
         assert rv.status_code == 200

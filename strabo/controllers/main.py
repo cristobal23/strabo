@@ -29,7 +29,12 @@ def signup():
         if form.validate() is False:
             return render_template('signup.html', form=form)
         else:
-            newuser = User(form.first_name.data, form.last_name.data, form.email.data, form.password.data)
+            newuser = User(
+                form.first_name.data,
+                form.last_name.data,
+                form.email.data,
+                form.password.data,
+            )
             db.session.add(newuser)
             db.session.commit()
 
@@ -83,7 +88,9 @@ def home():
 
     if request.method == 'POST':
         if form.validate() is False:
-            return render_template('home.html', form=form, my_coordinates=my_coordinates)
+            return render_template(
+                'home.html', form=form, my_coordinates=my_coordinates
+            )
         else:
             # get the address
             address = form.address.data
@@ -94,7 +101,11 @@ def home():
             places = p.query(address)
 
             # return those results
-            return render_template('home.html', form=form, my_coordinates=my_coordinates, places=places)
+            return render_template(
+                'home.html', form=form, my_coordinates=my_coordinates, places=places
+            )
 
     elif request.method == 'GET':
-        return render_template("home.html", form=form, my_coordinates=my_coordinates, places=places)
+        return render_template(
+            "home.html", form=form, my_coordinates=my_coordinates, places=places
+        )
