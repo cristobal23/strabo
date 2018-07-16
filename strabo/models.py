@@ -1,8 +1,9 @@
+from __future__ import unicode_literals
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
-
+from hyperlink import URL
 import geocoder
-import urllib2
+import requests
 import json
 
 db = SQLAlchemy()
@@ -35,9 +36,12 @@ class Place(object):
         return int(meters / 80)
 
     def wiki_path(self, slug):
-        return urllib2.urlparse.urljoin(
-            "http://en.wikipedia.org/wiki/", slug.replace(' ', '_')
+        url = URL(
+            scheme='https',
+            host='en.wikipedia.org',
+            path=['wiki', str(slug).replace(' ', '_')],
         )
+        return url.to_text()
 
     def address_to_latlng(self, address):
         g = geocoder.google(address)
@@ -47,14 +51,22 @@ class Place(object):
         lat, lng = self.address_to_latlng(address)
         print(lat, lng)
 
-        query_url = 'https://en.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=5000&gscoord={0}%7C{1}&gslimit=20&format=json'.format(
-            lat, lng
+        query_url = URL(
+            scheme='https',
+            host='en.wikipedia.org',
+            path=['w', 'api.php'],
+            query={
+                'action': 'query',
+                'list': 'geosearch',
+                'gsradius': '5000',
+                'gscoord': '{0}%7C{1}'.format(lat, lng),
+                'gslimit': '20',
+                'format': 'json',
+            },
         )
-        g = urllib2.urlopen(query_url)
-        results = g.read()
-        g.close()
 
-        data = json.loads(results)
+        r = requests.get(query_url)
+        data = json.loads(r.text)
         print(data)
 
         places = []

@@ -2,5 +2,6 @@
 .coverage
 .env
 .idea
+.pytest_cache
 notes
-venv
+env

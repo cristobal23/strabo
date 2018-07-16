@@ -7,8 +7,9 @@ Flask-Script==2.0.5
 Flask-WTF==0.12
 
 # Other
+hyperlink==18.0.0
 geocoder==1.8.0
-gunicorn==19.4.1
+gunicorn==19.9.0
 itsdangerous==0.24
 Jinja2==2.8
 MarkupSafe==0.23
@@ -18,7 +19,7 @@ Werkzeug==0.11.2
 WTForms==2.0.2
 
 # Testing
-pytest==2.7.0
-pytest-cov==1.8.1
+pytest==3.6.3
+pytest-cov==2.5.1
 mccabe==0.3
 flake8==2.4.0

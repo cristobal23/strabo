@@ -15,7 +15,7 @@ clean:
 test: lint pytest
 
 lint:
-	flake8 . --exclude=venv
+	flake8 .
 
 pytest:
-	py.test tests
+	py.test --cov-report term-missing --cov=strabo tests

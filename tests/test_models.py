@@ -3,7 +3,7 @@
 
 import pytest
 
-from strabo.models import db, User
+from strabo.models import db, User, Place
 
 create_user = False
 
@@ -27,3 +27,20 @@ class TestModels:
 
         assert test_user.email == 'firsty@emaily.com'
         assert test_user.check_password('supersafepassword')
+
+    def test_place_walking_time(self, testapp):
+        """ Test walking time calculation """
+
+        test_place = Place()
+
+        assert test_place.meters_to_walking_time(80) == 1
+
+    def test_place_wiki_path(self, testapp):
+        """ Test wiki url parsing """
+
+        test_place = Place()
+
+        assert (
+            test_place.wiki_path('Buckingham Palace')
+            == 'https://en.wikipedia.org/wiki/Buckingham_Palace'
+        )
