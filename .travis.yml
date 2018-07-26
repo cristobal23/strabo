@@ -7,4 +7,6 @@ python: 2.7
 install: make deps
 
 # command to run tests, e.g. python setup.py test
-script: make test
+script:
+  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then py.test --cov-report term-missing --cov=strabo --runslow tests; fi'
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then make test; fi'

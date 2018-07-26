@@ -39,8 +39,29 @@ class TestModels:
         """ Test wiki url parsing """
 
         test_place = Place()
+        expected_url = 'https://en.wikipedia.org/wiki/Buckingham_Palace'
 
-        assert (
-            test_place.wiki_path('Buckingham Palace')
-            == 'https://en.wikipedia.org/wiki/Buckingham_Palace'
+        assert test_place.wiki_path('Buckingham Palace') == expected_url
+
+    @pytest.mark.slow
+    def test_place_geocoder(self, testapp):
+        """ Test coordinates from an address """
+
+        test_place = Place()
+        lat, lng = test_place.address_to_latlng('1 California San Francisco, CA')
+
+        assert float(lat) == pytest.approx(37.7932, rel=1e-5)
+
+    @pytest.mark.slow
+    def test_place_query(self, testapp):
+        """ Test place query from an address """
+
+        test_place = Place()
+        places = test_place.query('1 California San Francisco, CA')
+
+        print(places)
+
+        assert any(
+            p.get('name', None) == 'Federal Reserve Bank of San Francisco'
+            for p in places
         )

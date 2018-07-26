@@ -3,5 +3,6 @@
 .env
 .idea
 .pytest_cache
+.tox
 notes
 env

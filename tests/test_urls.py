@@ -14,6 +14,18 @@ class TestURLs:
         rv = testapp.get('/')
         assert rv.status_code == 200
 
+    def test_about(self, testapp):
+        """ Tests if the home page loads """
+
+        rv = testapp.get('/about')
+        assert rv.status_code == 200
+
+    def test_signup(self, testapp):
+        """ Tests if the signup page loads """
+
+        rv = testapp.get('/signup')
+        assert rv.status_code == 200
+
     def test_login(self, testapp):
         """ Tests if the login page loads """
 

@@ -13,8 +13,9 @@ setup(
     zip_safe=False,
     install_requires=[
         'geocoder',
+        'hyperlink',
         'Flask-SQLAlchemy',
-        'Flask-Cache',
+        'Flask-Caching',
         'Flask-WTF',
         'Flask',
     ],

@@ -1,15 +1,15 @@
 #! ../env/bin/python
 # -*- coding: utf-8 -*-
 
-__author__ = 'Cristóbal Villarroel'
-__email__ = 'cristobal23@gmail.com'
-__version__ = '0.1'
-
 from flask import Flask
 from strabo.controllers.main import main
 from strabo.models import db
 from strabo.extensions import cache
 from strabo.settings import ProdConfig
+
+__author__ = 'Cristóbal Villarroel'
+__email__ = 'cristobal23@gmail.com'
+__version__ = '0.1'
 
 
 def create_app(object_name=ProdConfig):
